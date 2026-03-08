@@ -1,6 +1,4 @@
-
-import "./globals.css";
-
+import './globals.css';
 
 export default function RootLayout({
   children,
@@ -9,9 +7,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased flex flex-col min-h-screen`}
-      >
+      <body className={`antialiased flex flex-col min-h-screen`}>
         {children}
       </body>
     </html>
