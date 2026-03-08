@@ -39,7 +39,7 @@ export default function Navbar() {
                         <Link href="/sign-up">Sign Up Free</Link>
                     </Button>
                     <Button variant="default" className="bg-primary text-white" size="lg" asChild>
-                        <Link href="/demo">Schedule a Demo</Link>
+                        <Link href="/contact">Schedule a Demo</Link>
                     </Button>
                 </div>
 
@@ -67,7 +67,7 @@ export default function Navbar() {
                         <Link href="/sign-up">Sign Up Free</Link>
                     </Button>
                     <Button variant="default" className="bg-primary text-white" size="lg" asChild>
-                        <Link href="/demo">Schedule a Demo</Link>
+                        <Link href="/contact">Schedule a Demo</Link>
                     </Button>
                             </nav>
                         </SheetContent>

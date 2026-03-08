@@ -1,4 +1,4 @@
-import { HandshakeIcon, TrendingUp, MessageCircleIcon, Shield, List, File, PieChart, Users2, Wallet, Badge, MapPin } from 'lucide-react'
+import { HandshakeIcon, TrendingUp, MessageCircleIcon, Shield, List, File, PieChart, Users2, Wallet, Badge, MapPin, Bell, Cloud, Headphones } from 'lucide-react'
 
 export const navbar_items = [
     {
@@ -84,6 +84,25 @@ export const tek1_features = [
     }
 ]
 
+export const tek1_full_features = [
+    ...tek1_features,
+    {
+        icon: Bell,
+        title: 'Instant Alerts & Notifications',
+        description: 'Receive real-time alerts for incidents, guard clock-ins/outs, and critical events. Customize notification preferences for supervisors, clients, and relevant personnel.'
+    },
+    {
+        icon: Cloud,
+        title: 'Cloud-Based Infrastructure',
+        description: 'Access your security management platform anytime, anywhere, from any device. Our secure cloud infrastructure ensures data integrity and availability.'
+    },
+    {
+        icon: Headphones,
+        title: '24/7 Support & Training',
+        description: 'Benefit from dedicated customer support and comprehensive training resources. Our team is here to ensure a smooth onboarding and ongoing success with TEK1SECURITY.'
+    }
+]
+
 export const short_testimonials = [
     {
         name: 'Mr. Kunle Adebayo',
@@ -94,6 +113,30 @@ export const short_testimonials = [
         name: 'Mrs. Bimbo Okoro',
         role: 'CEO, Eagle Eye Security Services',
         content: 'The automated payroll and invoicing features have saved us countless hours. Our clients love the transparency of the client portal.'
+    },
+]
+
+export const full_testimonials = [
+    ...short_testimonials,
+    {
+        name: 'Mr. Chidozie Eze',
+        role: 'Director, Vanguard Security Services',
+        content: "We've seen a 30% increase in operational efficiency since implementing TEK1SECURITY. The centralized data and instant communication features are game-changers for our large team across different states."
+    },
+    {
+        name: 'Ms. Fatima Bello',
+        role: 'Client Relations Manager, Royal Shield Security',
+        content: 'The client portal is fantastic! Our clients love the transparency and ease of accessing reports. It has greatly improved our client relationships and retention.'
+    },
+    {
+        name: 'Mr. David Olatunji',
+        role: 'Founder, Sentinel Guarding Services',
+        content: 'As a startup, managing guards and reports manually was overwhelming. TEK1SECURITY provided an affordable and intuitive solution that allowed us to scale quickly and professionally.'
+    },
+    {
+        name: 'Mrs. Ngozi Emeka',
+        role: 'HR Manager, Platinum Guards Ltd',
+        content: 'The support team is incredibly responsive and helpful. Any questions we had were addressed promptly, making the transition to TEK1SECURITY seamless.'
     },
 ]
 
@@ -111,3 +154,125 @@ export const short_faqs = [
         answer: 'Absolutely! Our dedicated Client Portal allows your clients to securely view patrol logs, incident reports, and invoices, fostering transparency and trust.'
     },
 ]
+
+export const full_faqs = [
+    ...short_faqs,
+    {
+        question: 'What is TEK1SECURITY?',
+        answer: 'TEK1SECURITY is a modern security management software designed to help security companies in Nigeria streamline their operations, including guard management, incident reporting, payroll, and client communication.'
+    },
+    {
+        question: 'Does the platform include guard tracking?',
+        answer: 'Yes, our Professional and Enterprise plans include advanced GPS patrol monitoring. This allows you to track guard locations in real-time, verify patrol routes, set up geofences, and receive alerts for deviations, ensuring optimal accountability and safety.'
+    },
+    {
+        question: 'How is payroll handled?',
+        answer: 'TEK1SECURITY offers automated payroll calculations based on recorded shifts and attendance. This feature simplifies the process of paying your security personnel accurately and on time, reducing manual errors and saving significant administrative hours.'
+    },
+    {
+        question: "Is my company's data secure with TEK1SECURITY?",
+        answer: 'Data security is a top priority. We utilize robust encryption, secure cloud infrastructure, and adhere to industry best practices to protect all sensitive information. Regular backups and access controls are in place to ensure data integrity and confidentiality.'
+    },
+    {
+        question: 'What kind of support do you offer?',
+        answer: 'We offer comprehensive support to ensure your success. Our Basic plan includes email support, while Professional and Enterprise plans offer priority email and phone support, with Enterprise clients receiving 24/7 premium support and a dedicated account manager. We also provide extensive training resources.'
+    },
+    {
+        question: 'Can I customize the platform to fit my specific needs?',
+        answer: 'The Enterprise plan offers customizable modules and API integrations, allowing us to tailor the platform to your unique operational workflows and integrate with your existing systems. Contact our sales team to discuss your specific requirements.'
+    },
+]
+
+export const pricing_plans = [
+    {
+        title: 'Basic Plan',
+        monthly_price: '25,000',
+        yearly_price: '250,000',
+        features: [
+            'Up to 20 Guards',
+            'Standard Guard Management',
+            'Incident Reporting (Basic)',
+            'Daily Patrol Logs',
+            'Email Support',
+        ]
+    },
+    {
+        title: 'Professional Plan',
+        monthly_price: '50,000',
+        yearly_price: '500,000',
+        features: [
+            'Up to 100 Guards',
+            'Advanced Guard Management',
+            'Real-time Incident Reporting',
+            'Detailed Patrol Monitoring (GPS)',
+            'Dedicated Client Portal',
+            'Automated Payroll & Invoicing',
+            'Priority Email & Phone Support'
+        ]
+    },
+    {
+        title: 'Enterprise Plan',
+        monthly_price: 'Custom',
+        yearly_price: 'Custom',
+        features: [
+            'Unlimited Guards',
+            'Customizable Modules',
+            'Advanced Analytics & Reporting',
+            'API Integrations',
+            'Dedicated Account Manager',
+            'On-site Training & Support',
+            '24/7 Premium Support'
+        ]
+    },
+]
+
+export const plan_features = {
+    basic: {
+        title: 'Basic',
+        features: {
+            'Guard Management': true,
+            'Real-time Incident Reporting': false,
+            'GPS Patrol Tracking': false,
+            'Client Portal': false,
+            'Automated Payroll': false,
+            'Invoicing': false,
+            'Guard Compliance Tracking': true,
+            'Advanced Analytics': false,
+            'Custom Integration': false,
+            'Dedicated Account Manager': false,
+            'Support Level': 'Email'
+        }
+    },
+    professional: {
+        title: 'Professional',
+        features: {
+            'Guard Management': true,
+            'Real-time Incident Reporting': true,
+            'GPS Patrol Tracking': true,
+            'Client Portal': true,
+            'Automated Payroll': true,
+            'Invoicing': true,
+            'Guard Compliance Tracking': true,
+            'Advanced Analytics': false,
+            'Custom Integration': false,
+            'Dedicated Account Manager': false,
+            'Support Level': 'Priority Email & Phone'
+        }
+    },
+    enterprise: {
+        title: 'Enterprise',
+        features: {
+            'Guard Management': true,
+            'Real-time Incident Reporting': true,
+            'GPS Patrol Tracking': true,
+            'Client Portal': true,
+            'Automated Payroll': true,
+            'Invoicing': true,
+            'Guard Compliance Tracking': true,
+            'Advanced Analytics': true,
+            'Custom Integration': true,
+            'Dedicated Account Manager': true,
+            'Support Level': '24/7 Premium Support'
+        }
+    }
+}
