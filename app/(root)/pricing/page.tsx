@@ -34,6 +34,14 @@ const PricingPage = () => {
             We offer tiered pricing to suit businesses from growing startups to
             established enterprises.
           </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+            <div className="bg-primary/10 text-primary px-5 py-2 rounded-full font-medium text-sm">
+              Deployment Fee: ₦150,000 - ₦250,000
+            </div>
+            <div className="bg-primary/10 text-primary px-5 py-2 rounded-full font-medium text-sm">
+              Per Guard Fee: ₦1,500 / month
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
@@ -57,9 +65,14 @@ const PricingPage = () => {
                       per month
                     </span>
                   )}
-                  {plan.yearly_price !== 'Custom' && (
+                  {plan.yearly_price !== 'Custom' && plan.yearly_price !== 'N/A' && (
                     <span className="text-sm text-primary font-medium mt-1">
                       or ₦{plan.yearly_price} / year
+                    </span>
+                  )}
+                  {plan.yearly_price === 'N/A' && (
+                    <span className="text-sm text-muted-foreground mt-1">
+                      Trial period pricing
                     </span>
                   )}
                   {plan.yearly_price === 'Custom' && (

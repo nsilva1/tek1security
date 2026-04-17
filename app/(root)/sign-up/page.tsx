@@ -1,10 +1,56 @@
+'use client'
+
+import { useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
+import { type INewUser, Role } from '@/interface/user_interface';
+import { Loader } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const SignUpPage = () => {
+  const { signup, loading } = useAuth();
+  const router = useRouter();
+
+  const [formData, setFormData] = useState<INewUser>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    role: Role.CLIENT,
+    company: '',
+    phoneNumber: '',
+    password: '',
+  });
+
+  const handleChange = (input: keyof INewUser, value: any) => {
+    setFormData({
+      ...formData,
+      [input]: value,
+    })
+  }
+
+  const handleSubmit = async (e: React.SubmitEvent) => {
+    e.preventDefault();
+    
+      await signup(formData);
+
+      if(formData.role === Role.ADMIN) {
+        router.push('/admin/dashboard');
+      } else if(formData.role === Role.CLIENT) {
+        router.push('/client/dashboard');
+      } else if(formData.role === Role.GUARD) {
+        router.push('/guard/dashboard');
+      } else if(formData.role === Role.SUPERVISOR) {
+        router.push('/supervisor/dashboard');
+      } else if(formData.role === Role.TEK1ADMIN) {
+        router.push('/tek1/dashboard');
+      }
+    
+  }
+
   return (
     <div className="flex flex-col min-h-[calc(100vh-80px)]">
       {/* Section 1: Hero Section */}
@@ -37,15 +83,16 @@ const SignUpPage = () => {
               </p>
             </div>
 
-            <form className="flex flex-col gap-5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+              <fieldset disabled={loading}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="space-y-2">
                   <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" placeholder="John" required />
+                  <Input id="firstName" placeholder="John" required value={formData.firstName} onChange={(e) => handleChange('firstName', e.target.value)} />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" placeholder="Doe" required />
+                  <Input id="lastName" placeholder="Doe" required value={formData.lastName} onChange={(e) => handleChange('lastName', e.target.value)} />
                 </div>
               </div>
 
@@ -55,6 +102,8 @@ const SignUpPage = () => {
                   id="companyName"
                   placeholder="e.g. Shield Security Ltd."
                   required
+                  value={formData.company}
+                  onChange={(e) => handleChange('company', e.target.value)}
                 />
               </div>
 
@@ -65,6 +114,8 @@ const SignUpPage = () => {
                   type="email"
                   placeholder="john@company.com"
                   required
+                  value={formData.email}
+                  onChange={(e) => handleChange('email', e.target.value)}
                 />
               </div>
 
@@ -75,6 +126,8 @@ const SignUpPage = () => {
                   type="tel"
                   placeholder="+234 800 000 0000"
                   required
+                  value={formData.phoneNumber}
+                  onChange={(e) => handleChange('phoneNumber', e.target.value)}
                 />
               </div>
 
@@ -85,12 +138,15 @@ const SignUpPage = () => {
                   type="password"
                   placeholder="••••••••"
                   required
+                  value={formData.password}
+                  onChange={(e) => handleChange('password', e.target.value)}
                 />
               </div>
 
-              <Button type="button" className="w-full mt-4" size="lg">
-                Create Account
+              <Button type="submit" className="w-full mt-4" size="lg" disabled={loading}>
+                {loading ? <Loader className="animate-spin" /> : 'Create Account'}
               </Button>
+              </fieldset>
             </form>
 
             <p className="text-sm text-center text-muted-foreground mt-2">

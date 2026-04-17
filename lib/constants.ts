@@ -13,6 +13,9 @@ import {
   Bell,
   Cloud,
   Headphones,
+  AlertCircle,
+  Clock,
+  Hourglass,
 } from 'lucide-react';
 
 export const navbar_items = [
@@ -321,3 +324,46 @@ export const plan_features = {
     },
   },
 };
+
+export const adminDashboardMetrics = [
+  {
+    title: 'Total Guards',
+    value: '120',
+    change: '+12% from last month',
+    icon: Users2,
+    color: 'text-primary',
+    bg: 'bg-primary/10',
+  },
+  {
+    title: 'Guards Currently Clocked In',
+    value: '45',
+    change: '+8% from last month',
+    icon: Clock,
+    color: 'text-green-500',
+    bg: 'bg-green-500/10',
+  },
+  {
+    title: 'Total Hours Logged Today',
+    value: '12',
+    change: '-5% from last month',
+    icon: Hourglass,
+    color: 'text-red-500',
+    bg: 'bg-red-500/10',
+  },
+  {
+    title: 'Open Incidents',
+    value: '25',
+    change: '+10% from last month',
+    icon: AlertCircle,
+    color: 'text-blue-500',
+    bg: 'bg-blue-500/10',
+  },
+  {
+    title: 'Expiring Certifications',
+    value: '3',
+    change: '0% from last month',
+    icon: AlertCircle,
+    color: 'text-yellow-500',
+    bg: 'bg-yellow-500/10',
+  },
+];
