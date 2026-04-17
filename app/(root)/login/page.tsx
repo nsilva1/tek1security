@@ -11,10 +11,7 @@ import { Loader } from 'lucide-react';
 import { Role } from '@/interface/user_interface';
 import { useRouter } from 'next/navigation';
 
-export const metadata = {
-  title: 'Log In - TEK1SECURITY',
-  description: 'Access your TEK1SECURITY dashboard to manage your security operations effortlessly.',
-};
+
 
 const LoginPage = () => {
   const { login, loading, userInfo } = useAuth()
