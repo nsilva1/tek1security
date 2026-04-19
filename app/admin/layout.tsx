@@ -145,7 +145,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               className="flex items-center gap-3 px-4 py-2 bg-card border border-border shadow-md rounded-full hover:bg-muted transition-colors text-sm font-medium animate-in slide-in-from-bottom-5 fade-in"
               onClick={() => setIsFabOpen(false)}
             >
-              <span>Send Company announcement</span>
+              <span>Send Company Announcement</span>
               <div className="bg-primary/10 text-primary p-2 rounded-full">
                 <Megaphone size={16} />
               </div>
