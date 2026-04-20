@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import logo from '@/images/tek1-logo-transparent.png';
 import { 
@@ -19,40 +20,46 @@ import {
 } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 
-const NavLinks = () => (
-  <>
-    <Link href="/admin/dashboard" className="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-lg font-medium transition-colors">
-      <LayoutDashboard size={20} />
-      Dashboard
-    </Link>
-    <Link href="/admin/guards" className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:bg-muted/50 hover:text-foreground rounded-lg font-medium transition-colors">
-      <Users size={20} />
-      Workforce Management
-    </Link>
-    <Link href="/admin/clients" className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:bg-muted/50 hover:text-foreground rounded-lg font-medium transition-colors">
-      <User size={20} />
-      Guard Profiles
-    </Link>
-    <Link href="/admin/reports" className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:bg-muted/50 hover:text-foreground rounded-lg font-medium transition-colors">
-      <FileText size={20} />
-      Incident Reports
-    </Link>
-    <Link href="/admin/settings" className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:bg-muted/50 hover:text-foreground rounded-lg font-medium transition-colors">
-      <Settings size={20} />
-      Compliance Overview
-    </Link>
-    <Link href="/admin/reports" className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:bg-muted/50 hover:text-foreground rounded-lg font-medium transition-colors">
-      <FileText size={20} />
-      Incident Reports
-    </Link>
-  </>
-);
+const NavLinks = () => {
+  const pathname = usePathname();
+  
+  const links = [
+    { href: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+    { href: '/admin/workforce', icon: Users, label: 'Workforce Management' },
+    { href: '/admin/guards', icon: User, label: 'Guard Profiles' },
+    { href: '/admin/incidents', icon: FileText, label: 'Incident Reports' },
+    { href: '/admin/compliance', icon: Settings, label: 'Compliance Overview' },
+  ];
+
+  return (
+    <>
+      {links.map((link) => {
+        const isActive = pathname.startsWith(link.href);
+        const Icon = link.icon;
+        return (
+          <Link 
+            key={link.href} 
+            href={link.href} 
+            className={`flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-colors ${
+              isActive 
+                ? 'bg-primary/10 text-primary' 
+                : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
+            }`}
+          >
+            <Icon size={20} />
+            {link.label}
+          </Link>
+        );
+      })}
+    </>
+  );
+};
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isFabOpen, setIsFabOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-background relative">
+    <div className="flex h-screen overflow-hidden bg-background relative">
       {/* Sidebar - Desktop */}
       <aside className="hidden md:flex w-64 flex-col bg-card border-r border-border">
         <div className="p-6 border-b border-border flex items-center justify-center">
