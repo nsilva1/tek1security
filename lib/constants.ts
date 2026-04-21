@@ -367,3 +367,67 @@ export const adminDashboardMetrics = [
     bg: 'bg-yellow-500/10',
   },
 ];
+
+export const new_pricing_plans = [
+    {
+      name: "FREE / LOW ENTRY",
+      price: "₦0 – ₦50,000",
+      duration: "14 Days – 1 Month",
+      description: "Perfect for small teams or trial runs.",
+      features: [
+        "Max 10 – 20 guards",
+        "1 – 2 Sites",
+        "Basic tracking only",
+        "Community support"
+      ],
+      highlight: false,
+      color: "gray"
+    },
+    {
+      name: "BASIC PLAN",
+      price: "₦100,000",
+      duration: "per month",
+      description: "Standard security operations for growing teams.",
+      features: [
+        "Up to 50 guards",
+        "Unlimited Sites",
+        "Standard tracking",
+        "Standard reporting"
+      ],
+      highlight: false,
+      color: "green"
+    },
+    {
+      name: "GROWTH PLAN",
+      price: "₦180,000",
+      duration: "per month",
+      description: "Advanced features for established firms.",
+      features: [
+        "Up to 150 guards",
+        "Priority tracking",
+        "Advanced analytics",
+        "Dedicated account manager"
+      ],
+      highlight: true,
+      color: "blue"
+    },
+    {
+      name: "ENTERPRISE PLAN",
+      price: "₦300,000",
+      duration: "per month",
+      description: "Scale without limits for large organizations.",
+      features: [
+        "Up to 300 guards",
+        "Full API access",
+        "Custom integrations",
+        "24/7 Premium support"
+      ],
+      highlight: false,
+      color: "purple"
+    }
+  ];
+
+  export const addOns = [
+    { name: "Payroll reports", price: "₦30,000" },
+    { name: "Client access dashboard", price: "₦30,000" }
+  ];

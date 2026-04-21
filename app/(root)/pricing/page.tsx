@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { pricing_plans, plan_features } from '@/lib/constants';
+import { new_pricing_plans, addOns } from '@/lib/constants';
 import { Check, X, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
@@ -44,196 +44,87 @@ const PricingPage = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
-          {pricing_plans.map((plan, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-[1400px]">
+          {new_pricing_plans.map((plan, index) => (
             <Card
               key={index}
-              className="flex flex-col border-border/50 bg-background hover:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md"
+              className={`flex flex-col relative transition-all duration-300 shadow-sm hover:shadow-md ${
+                plan.highlight 
+                  ? 'border-2 border-primary shadow-primary/20 scale-105 z-10' 
+                  : 'border-border/50 bg-background hover:border-primary/50'
+              }`}
             >
-              <CardHeader className="flex-none">
-                <CardTitle className="text-2xl font-bold text-primary">
-                  {plan.title}
-                </CardTitle>
-                <div className="mt-4 flex flex-col gap-1">
-                  <span className="text-3xl">
-                    {plan.monthly_price === 'Custom'
-                      ? 'Custom'
-                      : `₦${plan.monthly_price}`}
+              {plan.highlight && (
+                <div className="absolute -top-4 left-0 right-0 flex justify-center">
+                  <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                    Most Popular
                   </span>
-                  {plan.monthly_price !== 'Custom' && (
-                    <span className="text-sm text-muted-foreground">
-                      per month
-                    </span>
-                  )}
-                  {plan.yearly_price !== 'Custom' && plan.yearly_price !== 'N/A' && (
-                    <span className="text-sm text-primary font-medium mt-1">
-                      or ₦{plan.yearly_price} / year
-                    </span>
-                  )}
-                  {plan.yearly_price === 'N/A' && (
-                    <span className="text-sm text-muted-foreground mt-1">
-                      Trial period pricing
-                    </span>
-                  )}
-                  {plan.yearly_price === 'Custom' && (
-                    <span className="text-sm text-muted-foreground mt-1">
-                      Tailored for large organizations
-                    </span>
-                  )}
+                </div>
+              )}
+              <CardHeader className="flex-none">
+                <CardTitle className={`text-xl font-bold ${plan.highlight ? 'text-primary' : ''}`}>
+                  {plan.name}
+                </CardTitle>
+                <p className="text-sm text-muted-foreground mt-2 min-h-[40px]">{plan.description}</p>
+                <div className="mt-4 flex flex-col gap-1">
+                  <span className="text-3xl font-bold">
+                    {plan.price}
+                  </span>
+                  <span className="text-sm text-muted-foreground font-medium">
+                    {plan.duration}
+                  </span>
                 </div>
               </CardHeader>
-              <CardContent className="flex-1">
-                <ul className="space-y-3 mt-4">
+              <CardContent className="flex-1 mt-4">
+                <ul className="space-y-4">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-sm">
                       <CheckCircle className="h-5 w-5 text-primary shrink-0" />
-                      <span className="text-muted-foreground font-medium">
+                      <span className="text-foreground font-medium">
                         {feature}
                       </span>
                     </li>
                   ))}
                 </ul>
               </CardContent>
-              <CardFooter className="flex-none pt-4">
+              <CardFooter className="flex-none pt-6 mt-auto">
                 <Button
-                  className={`w-full ${plan.title !== 'Professional Plan' ? 'bg-secondary text-white hover:bg-secondary/80 hover:text-white' : ''}`}
+                  className="w-full"
                   size="lg"
-                  variant={
-                    plan.title === 'Professional Plan' ? 'default' : 'outline'
-                  }
+                  variant={plan.highlight ? 'default' : 'outline'}
                   asChild
                 >
-                  <Link
-                    href={
-                      plan.title === 'Enterprise Plan'
-                        ? '#enterprise'
-                        : '/contact'
-                    }
-                  >
-                    {plan.title === 'Enterprise Plan'
-                      ? 'Contact for Quote'
-                      : 'Subscribe Now'}
+                  <Link href={plan.name === 'ENTERPRISE PLAN' ? '#enterprise' : '/contact'}>
+                    {plan.name === 'ENTERPRISE PLAN' ? 'Contact Sales' : 'Get Started'}
                   </Link>
                 </Button>
               </CardFooter>
             </Card>
           ))}
         </div>
-      </section>
 
-      {/* Section 3: Feature Comparison Section */}
-      <section className="flex w-full flex-col items-center gap-12 py-20 px-10 md:px-20 lg:px-40 bg-secondary">
-        <div className="text-center space-y-4 max-w-3xl">
-          <h2 className="font-bold text-3xl md:text-5xl text-white">
-            Compare Features
-          </h2>
-          <p className="text-lg text-white">
-            Detailed breakdown of what&apos;s included in each plan.
-          </p>
-        </div>
-
-        <div className="w-full max-w-6xl">
-          {/* Desktop View */}
-          <div className="hidden md:block overflow-x-auto bg-background rounded-xl shadow-sm">
-            <table className="w-full text-left border-collapse bg-secondary">
-              <thead>
-                <tr className="text-primary">
-                  <th className="p-6 border-b border-border/20 font-bold text-xl bg-muted/20 w-1/4">
-                    Feature
-                  </th>
-                  {Object.values(plan_features).map((plan) => (
-                    <th
-                      key={plan.title}
-                      className="p-6 border-b border-border/20 font-bold text-center text-xl w-1/4 bg-muted/20"
-                    >
-                      {plan.title}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(plan_features.basic.features).map(
-                  (featureKey, index) => (
-                    <tr
-                      key={index}
-                      className="hover:bg-muted/10 transition-colors"
-                    >
-                      <td className="p-4 px-6 border-b border-border/20 font-medium text-white">
-                        {featureKey}
-                      </td>
-                      {Object.values(plan_features).map((plan) => {
-                        const value = (plan.features as any)[featureKey];
-                        return (
-                          <td
-                            key={plan.title}
-                            className="p-4 border-b border-border/20 text-center"
-                          >
-                            {typeof value === 'boolean' ? (
-                              value ? (
-                                <Check className="mx-auto h-5 w-5 text-green-500" />
-                              ) : (
-                                <X className="mx-auto h-5 w-5 text-red-500" />
-                              )
-                            ) : (
-                              <span className="text-sm font-semibold text-white">
-                                {value}
-                              </span>
-                            )}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  )
-                )}
-              </tbody>
-            </table>
+        {/* Add-Ons Section */}
+        <div className="w-full max-w-[1200px] mt-16 bg-muted/30 rounded-2xl p-8 border border-border/50">
+          <div className="text-center mb-8">
+            <h3 className="font-bold text-2xl">Available Add-ons</h3>
+            <p className="text-muted-foreground mt-2">Enhance your plan with these optional features.</p>
           </div>
-
-          {/* Mobile View */}
-          <div className="md:hidden flex flex-col gap-6 w-full">
-            {Object.keys(plan_features.basic.features).map(
-              (featureKey, index) => (
-                <div
-                  key={index}
-                  className="bg-background border border-border/50 rounded-xl p-5 shadow-sm"
-                >
-                  <h4 className="font-bold text-lg mb-4 text-center border-b border-border/30 pb-3">
-                    {featureKey}
-                  </h4>
-                  <div className="flex flex-col gap-4">
-                    {Object.values(plan_features).map((plan) => {
-                      const value = (plan.features as any)[featureKey];
-                      return (
-                        <div
-                          key={plan.title}
-                          className="flex justify-between items-center px-1"
-                        >
-                          <span className="font-medium text-muted-foreground">
-                            {plan.title}
-                          </span>
-                          <span>
-                            {typeof value === 'boolean' ? (
-                              value ? (
-                                <Check className="h-5 w-5 text-primary" />
-                              ) : (
-                                <X className="h-5 w-5 text-muted-foreground/30" />
-                              )
-                            ) : (
-                              <span className="text-sm font-semibold text-right max-w-[120px]">
-                                {value}
-                              </span>
-                            )}
-                          </span>
-                        </div>
-                      );
-                    })}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {addOns.map((addon, idx) => (
+              <div key={idx} className="flex items-center justify-between bg-background p-5 rounded-xl border border-border/50 shadow-sm hover:border-primary/50 transition-colors">
+                <div className="flex items-center gap-4">
+                  <div className="bg-primary/10 text-primary p-2.5 rounded-lg">
+                    <Check className="h-5 w-5" />
                   </div>
+                  <span className="font-semibold text-foreground text-lg">{addon.name}</span>
                 </div>
-              )
-            )}
+                <span className="font-bold text-primary text-lg">{addon.price} <span className="text-sm text-muted-foreground font-normal">/ month</span></span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
 
       {/* Section 4: Enterprise CTA Section */}
       <section
