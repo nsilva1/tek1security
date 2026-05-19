@@ -7,7 +7,7 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { new_pricing_plans, addOns } from '@/lib/constants';
-import { Check, X, CheckCircle } from 'lucide-react';
+import { Check, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 
 const PricingPage = () => {
